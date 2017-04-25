@@ -1,7 +1,7 @@
 package com.lth.kaoqinsys.enump;
 
 public class normalenum {
-	public enum TCSTYPE
+	public static enum TCSTYPE
 	{
 	    TEACHER(0), STUDENT(1);
 
@@ -18,7 +18,7 @@ public class normalenum {
 	    }
 	}
 	
-	public enum TCSSTATE
+	public static enum TCSSTATE
 	{
 		ABSEBT(0), ATTEND(1);
 
