@@ -57,10 +57,7 @@
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			<section class="content">
-			<div class="row">
-			     
-			</div>
+			<section class="content" id="content">
 			</section>
 		</div>
 		<div class="control-sidebar-bg"></div>
@@ -69,7 +66,10 @@
 </body>
 <script>
     $(".treeview-menu").on("click","li",function(){
-             console.log($(this).data('url'));
+             var  $this=$(this);
+             $this.addClass("active").siblings().removeClass("active");
+             var url=$this.data('url');
+             $('#content').load(url);
     });
 </script>
 </html>

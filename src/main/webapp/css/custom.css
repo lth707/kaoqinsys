@@ -1,4 +1,7 @@
 @CHARSET "UTF-8";
+a{
+	cursor:pointer;
+}
 .form-bg{
     background: #00b4ef;
 }
