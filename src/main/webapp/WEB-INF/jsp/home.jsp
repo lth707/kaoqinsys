@@ -65,6 +65,7 @@
 
 </body>
 <script>
+    $('#content').load("kebiao");
     $(".treeview-menu").on("click","li",function(){
              var  $this=$(this);
              $this.addClass("active").siblings().removeClass("active");
