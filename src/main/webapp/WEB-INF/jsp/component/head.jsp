@@ -23,6 +23,9 @@
 <link rel="stylesheet" href="css/adminlte/AdminLTE.min.css"/>
 <link rel="stylesheet" href="css/adminlte/skins/_all-skins.min.css">
 
+<link rel="stylesheet" href="css/fullcalendar/fullcalendar.min.css">
+
+
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/plugins/adminlte/app.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
