@@ -1,4 +1,8 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@page import="com.lth.kaoqinsys.pojo.Teacher"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"
+	isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <jsp:include page="./component/head.jsp">
@@ -29,10 +33,8 @@
 							</div>
 							<div class="pull-right">
 								<a href="#" class="btn btn-default btn-flat">退出</a>
-							</div>
-						</li>
-					</ul>
-				</li>
+							</div></li>
+					</ul></li>
 			</ul>
 		</div>
 		</nav> </header>
@@ -47,30 +49,33 @@
 						class="fa fa-angle-left pull-right"></i> </span> </a>
 				<ul class="treeview-menu">
 					<li class="active" data-url="kebiao"><a><i
-							class="fa fa-calendar-times-o"></i> 课程表</a></li>
-					<li data-url="record"><a><i class="fa fa-line-chart"></i> 考勤记录</a></li>
-					<li data-url="auth"><a><i class="fa fa-cog"></i> 权限管理</a></li>
-				</ul>
-			</li>
+							class="fa fa-calendar-times-o"></i> 课程表</a>
+					</li>
+					<li data-url="record"><a><i class="fa fa-line-chart"></i>
+							考勤记录</a>
+					</li>
+					<c:if test="${teacher.isadmin==1}">
+						<li data-url="auth"><a><i class="fa fa-cog"></i> 权限管理</a></li>
+					</c:if>
+				</ul></li>
 		</ul>
 		</section> <!-- /.sidebar --> </aside>
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			<section class="content" id="content">
-			</section>
+			<section class="content" id="content"> </section>
 		</div>
 		<div class="control-sidebar-bg"></div>
 	</div>
 
 </body>
 <script>
-    $('#content').load("kebiao");
-    $(".treeview-menu").on("click","li",function(){
-             var  $this=$(this);
-             $this.addClass("active").siblings().removeClass("active");
-             var url=$this.data('url');
-             $('#content').load(url);
-    });
+	$('#content').load("kebiao");
+	$(".treeview-menu").on("click", "li", function() {
+		var $this = $(this);
+		$this.addClass("active").siblings().removeClass("active");
+		var url = $this.data('url');
+		$('#content').load(url);
+	});
 </script>
 </html>
