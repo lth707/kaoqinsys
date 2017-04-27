@@ -21,7 +21,6 @@ import com.lth.kaoqinsys.service.ICourseService;
 import com.lth.kaoqinsys.service.IT_C_SService;
 import com.lth.kaoqinsys.utils.Auth;
 import com.lth.kaoqinsys.utils.JsonUtils;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 @Controller
 @RequestMapping("/kebiao")

@@ -34,10 +34,8 @@
 							</div>
 							<div class="pull-right">
 								<a class="btn btn-danger btn-flat" id="logout">退出</a>
-							</div>
-						</li>
-					</ul>
-				</li>
+							</div></li>
+					</ul></li>
 			</ul>
 		</div>
 		</nav> </header>
@@ -52,15 +50,15 @@
 						class="fa fa-angle-left pull-right"></i> </span> </a>
 				<ul class="treeview-menu">
 					<li class="active" data-url="kebiao"><a><i
-							class="fa fa-calendar-times-o"></i> 课程表</a></li>
+							class="fa fa-calendar-times-o"></i> 课程表</a>
+					</li>
 					<li data-url="record"><a><i class="fa fa-line-chart"></i>
-							考勤记录</a></li>
+							考勤记录</a>
+					</li>
 					<c:if test="${teacher.isadmin==1}">
-						<li data-url="auth"><a><i class="fa fa-cog"></i> 权限管理</a>
-						</li>
+						<li data-url="auth"><a><i class="fa fa-cog"></i> 权限管理</a></li>
 					</c:if>
-				</ul>
-			</li>
+				</ul></li>
 		</ul>
 		</section> <!-- /.sidebar --> </aside>
 
@@ -71,7 +69,8 @@
 		<div class="control-sidebar-bg"></div>
 	</div>
 	<div class="modal loading-modal"
-		style="display:none;background:rgba(0,0,0,0.1);z-index:10000000000000" data-backdrop="static">
+		style="display:none;background:rgba(0,0,0,0.1);z-index:10000000000000"
+		data-backdrop="static">
 		<div class="loading">
 			<div class="shcl"
 				style="position: relative; width: 0px; height: 0px; margin-left: 1px; margin-top: 1px;">
@@ -141,7 +140,6 @@
 			}, 500);
 		});
 
-		$('#content').load("kebiao");
 		$(".treeview-menu").on("click", "li", function() {
 			var $this = $(this);
 			$this.addClass("active").siblings().removeClass("active");
@@ -213,5 +211,29 @@
 			location.href = 'login';
 		}, 500);
 	}
+	debugger;
+	var nowDate = new Date();
+	var curYear = nowDate.Format('yyyy');
+	var date1 = new Date(curYear + '/3/1');
+	var date2 = new Date(curYear + '/9/1');
+	var term = 1;//学期
+	var week = 1;//周
+	if (Date.parse(nowDate) > Date.parse(date2)) {
+		term = 1;
+	} else if (Date.parse(nowDate) > Date.parse(date1)
+			&& Date.parse(nowDate) < Date.parse(date2)) {
+		term = 2;
+	} else {
+		term = 1;
+	}
+	var td;
+	if (term = 1) {
+		td = TodayInfo(curYear + "/9/1");
+	} else {
+		td = TodayInfo(curYear + "/3/1");
+	}
+    week=td.week;
+	console.log("今天是自2013/12/16日，开学以来的第 " + td.week + " 周，今天星期" + td.day+"第"+term+"学期");
+	$('#content').load("kebiao");
 </script>
 </html>

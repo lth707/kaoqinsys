@@ -31,4 +31,6 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/plugins/layer/layer.js"></script>
 <script type="text/javascript" src="js/plugins/jquery.shCircleLoader-min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+    
 </head>
