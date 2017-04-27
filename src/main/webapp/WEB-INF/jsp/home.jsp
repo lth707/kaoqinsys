@@ -99,7 +99,7 @@
 		</div>
 	</div>
 
-	<div style="display:hidden" id='modifycontent'>
+	<div style="display:none" id='modifycontent'>
 
 		<form class="form-horizontal" method="post" action="modifypassword"
 			id="modifyform">

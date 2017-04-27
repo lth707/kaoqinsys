@@ -1,6 +1,20 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<style>
+.fc-row .fc-content-skeleton td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.fc-row table {
+	height: 70px;
+}
+
+.fc-row .fc-content-skeleton {
+	padding-bottom: 0px;
+}
+</style>
 <div class="box box-primary">
 	<div class="box-body no-padding">
 		<!-- THE CALENDAR -->
@@ -46,7 +60,8 @@
 												</tr>
 											</thead>
 										</table>
-									</div></td>
+									</div>
+								</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -54,6 +69,10 @@
 								<td class="fc-widget-content">
 									<div class="fc-day-grid-container">
 										<div class="fc-day-grid">
+
+
+
+
 											<div class="fc-row fc-week fc-widget-content">
 												<div class="fc-bg">
 													<table>
@@ -74,7 +93,7 @@
 													<table>
 														<tbody>
 															<tr>
-																<td style="width:10%">1</td>
+																<td style="width:10%">第1节</td>
 																<c:forEach var="index" items="${fiftyArrayList}"
 																	begin="0" end="4">
 
@@ -92,134 +111,388 @@
 													</table>
 												</div>
 											</div>
-										</div>
 
-										<div class="fc-row fc-week fc-widget-content">
-											<div class="fc-bg">
-												<table>
-													<tbody>
-														<tr>
-															<td class="fc-day fc-widget-content fc-mon"
-																style="width:10%"></td>
-															<td class="fc-day fc-widget-content fc-mon fc-future"></td>
-															<td class="fc-day fc-widget-content fc-tue fc-future"></td>
-															<td class="fc-day fc-widget-content fc-wed fc-future"></td>
-															<td class="fc-day fc-widget-content fc-thu fc-future"></td>
-															<td class="fc-day fc-widget-content fc-fri fc-future"></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<div class="fc-content-skeleton">
-												<table>
-													<tbody>
-														<tr>
-															<td style="width:10%">2</td>
-															<c:forEach var="index" items="${fiftyArrayList}"
-																begin="5" end="9">
+											<div class="fc-row fc-week fc-widget-content">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td class="fc-day fc-widget-content fc-mon"
+																	style="width:10%"></td>
+																<td class="fc-day fc-widget-content fc-mon fc-future"></td>
+																<td class="fc-day fc-widget-content fc-tue fc-future"></td>
+																<td class="fc-day fc-widget-content fc-wed fc-future"></td>
+																<td class="fc-day fc-widget-content fc-thu fc-future"></td>
+																<td class="fc-day fc-widget-content fc-fri fc-future"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="fc-content-skeleton">
+													<table>
+														<tbody>
+															<tr>
+																<td style="width:10%">第2节</td>
+																<c:forEach var="index" items="${fiftyArrayList}"
+																	begin="5" end="9">
 
-																<c:set value="${courseMap.get(index)}" var="course" />
-																<c:set value="${tcsMap.get(index)}" var="tcs" />
-																<c:if test="${course!=null}">
-																	<td data-tcs='${tcs}'>${course.name}</td>
-																</c:if>
-																<c:if test="${course==null}">
-																	<td></td>
-																</c:if>
-															</c:forEach>
-														</tr>
-													</tbody>
-												</table>
+																	<c:set value="${courseMap.get(index)}" var="course" />
+																	<c:set value="${tcsMap.get(index)}" var="tcs" />
+																	<c:if test="${course!=null}">
+																		<td data-tcs='${tcs}'>${course.name}</td>
+																	</c:if>
+																	<c:if test="${course==null}">
+																		<td></td>
+																	</c:if>
+																</c:forEach>
+															</tr>
+														</tbody>
+													</table>
+												</div>
 											</div>
-										</div>
-										<div class="fc-row fc-week fc-widget-content">
-											<div class="fc-bg">
-												<table>
-													<tbody>
-														<tr>
-															<td class="fc-day fc-widget-content fc-mon"
-																style="width:10%"></td>
-															<td class="fc-day fc-widget-content fc-mon fc-future"></td>
-															<td class="fc-day fc-widget-content fc-tue fc-future"></td>
-															<td class="fc-day fc-widget-content fc-wed fc-future"></td>
-															<td class="fc-day fc-widget-content fc-thu fc-future"></td>
-															<td class="fc-day fc-widget-content fc-fri fc-future"></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<div class="fc-content-skeleton">
-												<table>
-													<tbody>
-														<tr>
-															<td style="width:10%">3</td>
-															<c:forEach var="index" items="${fiftyArrayList}"
-																begin="10" end="14">
+											<div class="fc-row fc-week fc-widget-content">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td class="fc-day fc-widget-content fc-mon"
+																	style="width:10%"></td>
+																<td class="fc-day fc-widget-content fc-mon fc-future"></td>
+																<td class="fc-day fc-widget-content fc-tue fc-future"></td>
+																<td class="fc-day fc-widget-content fc-wed fc-future"></td>
+																<td class="fc-day fc-widget-content fc-thu fc-future"></td>
+																<td class="fc-day fc-widget-content fc-fri fc-future"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="fc-content-skeleton">
+													<table>
+														<tbody>
+															<tr>
+																<td style="width:10%">第3节</td>
+																<c:forEach var="index" items="${fiftyArrayList}"
+																	begin="10" end="14">
 
-																<c:set value="${courseMap.get(index)}" var="course" />
-																<c:set value="${tcsMap.get(index)}" var="tcs" />
-																<c:if test="${course!=null}">
-																	<td data-tcs='${tcs}'>${course.name}</td>
-																</c:if>
-																<c:if test="${course==null}">
-																	<td></td>
-																</c:if>
-															</c:forEach>
-														</tr>
-													</tbody>
-												</table>
+																	<c:set value="${courseMap.get(index)}" var="course" />
+																	<c:set value="${tcsMap.get(index)}" var="tcs" />
+																	<c:if test="${course!=null}">
+																		<td data-tcs='${tcs}'>${course.name}</td>
+																	</c:if>
+																	<c:if test="${course==null}">
+																		<td></td>
+																	</c:if>
+																</c:forEach>
+															</tr>
+														</tbody>
+													</table>
+												</div>
 											</div>
-										</div>
-										<div class="fc-row fc-week fc-widget-content">
-											<div class="fc-bg">
-												<table>
-													<tbody>
-														<tr>
-															<td class="fc-day fc-widget-content fc-mon"
-																style="width:10%"></td>
-															<td class="fc-day fc-widget-content fc-mon fc-future"></td>
-															<td class="fc-day fc-widget-content fc-tue fc-future"></td>
-															<td class="fc-day fc-widget-content fc-wed fc-future"></td>
-															<td class="fc-day fc-widget-content fc-thu fc-future"></td>
-															<td class="fc-day fc-widget-content fc-fri fc-future"></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<div class="fc-content-skeleton">
-												<table>
-													<tbody>
-														<tr>
-															<td style="width:10%">4</td>
-															<c:forEach var="index" items="${fiftyArrayList}"
-																begin="15" end="19">
+											<div class="fc-row fc-week fc-widget-content">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td class="fc-day fc-widget-content fc-mon"
+																	style="width:10%"></td>
+																<td class="fc-day fc-widget-content fc-mon fc-future"></td>
+																<td class="fc-day fc-widget-content fc-tue fc-future"></td>
+																<td class="fc-day fc-widget-content fc-wed fc-future"></td>
+																<td class="fc-day fc-widget-content fc-thu fc-future"></td>
+																<td class="fc-day fc-widget-content fc-fri fc-future"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="fc-content-skeleton">
+													<table>
+														<tbody>
+															<tr>
+																<td style="width:10%">第4节</td>
+																<c:forEach var="index" items="${fiftyArrayList}"
+																	begin="15" end="19">
 
-																<c:set value="${courseMap.get(index)}" var="course" />
-																<c:set value="${tcsMap.get(index)}" var="tcs" />
-																<c:if test="${course!=null}">
-																	<td data-tcs='${tcs}'>${course.name}</td>
-																</c:if>
-																<c:if test="${course==null}">
-																	<td></td>
-																</c:if>
-															</c:forEach>
-														</tr>
-													</tbody>
-												</table>
+																	<c:set value="${courseMap.get(index)}" var="course" />
+																	<c:set value="${tcsMap.get(index)}" var="tcs" />
+																	<c:if test="${course!=null}">
+																		<td data-tcs='${tcs}'>${course.name}</td>
+																	</c:if>
+																	<c:if test="${course==null}">
+																		<td></td>
+																	</c:if>
+																</c:forEach>
+															</tr>
+														</tbody>
+													</table>
+												</div>
 											</div>
-										</div>
-										<div class="fc-row fc-week fc-widget-content" style="min-height:20px">
-											<div class="fc-bg">
-												<table>
-													<tbody>
-														<tr>
-															<td colspan="6" style="text-align:center;height:30px">中午休息</td>
-														</tr>
-													</tbody>
-												</table>
+											<div class="fc-row fc-week fc-widget-content"
+												style="min-height:20px">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td colspan="6" style="text-align:center;height:30px">中午间歇</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
 											</div>
+
+
+
+
+
+
+
+											<div class="fc-row fc-week fc-widget-content">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td class="fc-day fc-widget-content fc-mon"
+																	style="width:10%"></td>
+																<td class="fc-day fc-widget-content fc-mon fc-future"></td>
+																<td class="fc-day fc-widget-content fc-tue fc-future"></td>
+																<td class="fc-day fc-widget-content fc-wed fc-future"></td>
+																<td class="fc-day fc-widget-content fc-thu fc-future"></td>
+																<td class="fc-day fc-widget-content fc-fri fc-future"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="fc-content-skeleton">
+													<table>
+														<tbody>
+															<tr>
+																<td style="width:10%">第5节</td>
+																<c:forEach var="index" items="${fiftyArrayList}"
+																	begin="20" end="24">
+
+																	<c:set value="${courseMap.get(index)}" var="course" />
+																	<c:set value="${tcsMap.get(index)}" var="tcs" />
+																	<c:if test="${course!=null}">
+																		<td data-tcs='${tcs}'>${course.name}</td>
+																	</c:if>
+																	<c:if test="${course==null}">
+																		<td></td>
+																	</c:if>
+																</c:forEach>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+
+											<div class="fc-row fc-week fc-widget-content">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td class="fc-day fc-widget-content fc-mon"
+																	style="width:10%"></td>
+																<td class="fc-day fc-widget-content fc-mon fc-future"></td>
+																<td class="fc-day fc-widget-content fc-tue fc-future"></td>
+																<td class="fc-day fc-widget-content fc-wed fc-future"></td>
+																<td class="fc-day fc-widget-content fc-thu fc-future"></td>
+																<td class="fc-day fc-widget-content fc-fri fc-future"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="fc-content-skeleton">
+													<table>
+														<tbody>
+															<tr>
+																<td style="width:10%">第6节</td>
+																<c:forEach var="index" items="${fiftyArrayList}"
+																	begin="25" end="29">
+
+																	<c:set value="${courseMap.get(index)}" var="course" />
+																	<c:set value="${tcsMap.get(index)}" var="tcs" />
+																	<c:if test="${course!=null}">
+																		<td data-tcs='${tcs}'>${course.name}</td>
+																	</c:if>
+																	<c:if test="${course==null}">
+																		<td></td>
+																	</c:if>
+																</c:forEach>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="fc-row fc-week fc-widget-content">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td class="fc-day fc-widget-content fc-mon"
+																	style="width:10%"></td>
+																<td class="fc-day fc-widget-content fc-mon fc-future"></td>
+																<td class="fc-day fc-widget-content fc-tue fc-future"></td>
+																<td class="fc-day fc-widget-content fc-wed fc-future"></td>
+																<td class="fc-day fc-widget-content fc-thu fc-future"></td>
+																<td class="fc-day fc-widget-content fc-fri fc-future"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="fc-content-skeleton">
+													<table>
+														<tbody>
+															<tr>
+																<td style="width:10%">第7节</td>
+																<c:forEach var="index" items="${fiftyArrayList}"
+																	begin="30" end="34">
+
+																	<c:set value="${courseMap.get(index)}" var="course" />
+																	<c:set value="${tcsMap.get(index)}" var="tcs" />
+																	<c:if test="${course!=null}">
+																		<td data-tcs='${tcs}'>${course.name}</td>
+																	</c:if>
+																	<c:if test="${course==null}">
+																		<td></td>
+																	</c:if>
+																</c:forEach>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="fc-row fc-week fc-widget-content">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td class="fc-day fc-widget-content fc-mon"
+																	style="width:10%"></td>
+																<td class="fc-day fc-widget-content fc-mon fc-future"></td>
+																<td class="fc-day fc-widget-content fc-tue fc-future"></td>
+																<td class="fc-day fc-widget-content fc-wed fc-future"></td>
+																<td class="fc-day fc-widget-content fc-thu fc-future"></td>
+																<td class="fc-day fc-widget-content fc-fri fc-future"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="fc-content-skeleton">
+													<table>
+														<tbody>
+															<tr>
+																<td style="width:10%">第8节</td>
+																<c:forEach var="index" items="${fiftyArrayList}"
+																	begin="35" end="39">
+
+																	<c:set value="${courseMap.get(index)}" var="course" />
+																	<c:set value="${tcsMap.get(index)}" var="tcs" />
+																	<c:if test="${course!=null}">
+																		<td data-tcs='${tcs}'>${course.name}</td>
+																	</c:if>
+																	<c:if test="${course==null}">
+																		<td></td>
+																	</c:if>
+																</c:forEach>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="fc-row fc-week fc-widget-content"
+												style="min-height:20px">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td colspan="6" style="text-align:center;height:30px">下午间歇</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+
+
+
+											<div class="fc-row fc-week fc-widget-content">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td class="fc-day fc-widget-content fc-mon"
+																	style="width:10%"></td>
+																<td class="fc-day fc-widget-content fc-mon fc-future"></td>
+																<td class="fc-day fc-widget-content fc-tue fc-future"></td>
+																<td class="fc-day fc-widget-content fc-wed fc-future"></td>
+																<td class="fc-day fc-widget-content fc-thu fc-future"></td>
+																<td class="fc-day fc-widget-content fc-fri fc-future"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="fc-content-skeleton">
+													<table>
+														<tbody>
+															<tr>
+																<td style="width:10%">第9节</td>
+																<c:forEach var="index" items="${fiftyArrayList}"
+																	begin="40" end="44">
+
+																	<c:set value="${courseMap.get(index)}" var="course" />
+																	<c:set value="${tcsMap.get(index)}" var="tcs" />
+																	<c:if test="${course!=null}">
+																		<td data-tcs='${tcs}'>${course.name}</td>
+																	</c:if>
+																	<c:if test="${course==null}">
+																		<td></td>
+																	</c:if>
+																</c:forEach>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="fc-row fc-week fc-widget-content">
+												<div class="fc-bg">
+													<table>
+														<tbody>
+															<tr>
+																<td class="fc-day fc-widget-content fc-mon"
+																	style="width:10%"></td>
+																<td class="fc-day fc-widget-content fc-mon fc-future"></td>
+																<td class="fc-day fc-widget-content fc-tue fc-future"></td>
+																<td class="fc-day fc-widget-content fc-wed fc-future"></td>
+																<td class="fc-day fc-widget-content fc-thu fc-future"></td>
+																<td class="fc-day fc-widget-content fc-fri fc-future"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="fc-content-skeleton">
+													<table>
+														<tbody>
+															<tr>
+																<td style="width:10%">第10节</td>
+																<c:forEach var="index" items="${fiftyArrayList}"
+																	begin="45" end="49">
+
+																	<c:set value="${courseMap.get(index)}" var="course" />
+																	<c:set value="${tcsMap.get(index)}" var="tcs" />
+																	<c:if test="${course!=null}">
+																		<td data-tcs='${tcs}'>${course.name}</td>
+																	</c:if>
+																	<c:if test="${course==null}">
+																		<td></td>
+																	</c:if>
+																</c:forEach>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+
 										</div>
-									</div></td>
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
