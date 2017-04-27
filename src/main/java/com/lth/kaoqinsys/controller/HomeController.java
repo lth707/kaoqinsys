@@ -19,9 +19,7 @@ public class HomeController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String  index(HttpServletRequest request,HttpServletResponse response,Model model){
-		
-		Auth auth=new Auth();
-		Teacher teacher=auth.getLoginTeacher(request, response);
+		Teacher teacher=Auth.getLoginTeacher(request, response);
 		if(teacher!=null){
 			model.addAttribute("teacher", teacher);
 			model.addAttribute("title", "主页");

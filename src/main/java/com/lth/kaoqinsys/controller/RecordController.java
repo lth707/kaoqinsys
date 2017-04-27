@@ -18,9 +18,7 @@ import com.lth.kaoqinsys.utils.Auth;
 public class RecordController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String  index(HttpServletRequest request,HttpServletResponse response,Model model){
-		
-		Auth auth=new Auth();
-		Teacher teacher=auth.getLoginTeacher(request, response);
+		Teacher teacher=Auth.getLoginTeacher(request, response);
 		if(teacher!=null){
 			return "record";
 		}else{

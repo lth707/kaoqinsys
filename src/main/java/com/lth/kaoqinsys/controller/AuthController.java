@@ -18,9 +18,7 @@ import com.lth.kaoqinsys.utils.Auth;
 public class AuthController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String  index(HttpServletRequest request,HttpServletResponse response,Model model){
-		
-		Auth auth=new Auth();
-		Teacher teacher=auth.getLoginTeacher(request, response);
+		Teacher teacher=Auth.getLoginTeacher(request, response);
 		if(teacher!=null){
 			if(teacher.getIsadmin()!=1){
 				return "nofound";

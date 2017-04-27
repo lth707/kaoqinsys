@@ -16,5 +16,9 @@ public class TeacherService implements ITeacherService {
 	public Teacher getTeacherByNum(String num) {
 		return this.teacherMapper.selectTeacherByNum(num);
 	}
+	@Override
+	public int updateTeacher(Teacher teacher) {
+		return this.teacherMapper.updateByPrimaryKey(teacher);
+	}
 
 }

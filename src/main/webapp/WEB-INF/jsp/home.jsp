@@ -8,7 +8,8 @@
 <jsp:include page="./component/head.jsp">
 	<jsp:param value="${title}" name="title" />
 </jsp:include>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" style="height:100%">
+
 	<div class="wrapper">
 		<header class="main-header"> <!-- Logo --> <a href="home"
 			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
@@ -29,12 +30,14 @@
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="#" class="btn btn-default btn-flat">修改密码</a>
+								<a class="btn btn-default btn-flat" id="modifypassword">修改密码</a>
 							</div>
 							<div class="pull-right">
-								<a href="#" class="btn btn-default btn-flat">退出</a>
-							</div></li>
-					</ul></li>
+								<a class="btn btn-danger btn-flat" id="logout">退出</a>
+							</div>
+						</li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 		</nav> </header>
@@ -49,15 +52,15 @@
 						class="fa fa-angle-left pull-right"></i> </span> </a>
 				<ul class="treeview-menu">
 					<li class="active" data-url="kebiao"><a><i
-							class="fa fa-calendar-times-o"></i> 课程表</a>
-					</li>
+							class="fa fa-calendar-times-o"></i> 课程表</a></li>
 					<li data-url="record"><a><i class="fa fa-line-chart"></i>
-							考勤记录</a>
-					</li>
+							考勤记录</a></li>
 					<c:if test="${teacher.isadmin==1}">
-						<li data-url="auth"><a><i class="fa fa-cog"></i> 权限管理</a></li>
+						<li data-url="auth"><a><i class="fa fa-cog"></i> 权限管理</a>
+						</li>
 					</c:if>
-				</ul></li>
+				</ul>
+			</li>
 		</ul>
 		</section> <!-- /.sidebar --> </aside>
 
@@ -67,15 +70,148 @@
 		</div>
 		<div class="control-sidebar-bg"></div>
 	</div>
+	<div class="modal loading-modal"
+		style="display:none;background:rgba(0,0,0,0.1);z-index:10000000000000" data-backdrop="static">
+		<div class="loading">
+			<div class="shcl"
+				style="position: relative; width: 0px; height: 0px; margin-left: 1px; margin-top: 1px;">
+				<div
+					style="left: 0px; top: 0px; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
+				<div
+					style="left: 0px; top: 0px; animation-delay: 0.1s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
+				<div
+					style="left: 0px; top: 0px; animation-delay: 0.2s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
+				<div
+					style="left: 0px; top: 0px; animation-delay: 0.3s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
+				<div
+					style="left: 0px; top: 0px; animation-delay: 0.4s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
+				<div
+					style="left: 0px; top: 0px; animation-delay: 0.5s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
+				<div
+					style="left: 0px; top: 0px; animation-delay: 0.6s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
+				<div
+					style="left: 0px; top: 0px; animation-delay: 0.7s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
+				<div
+					style="left: 0px; top: 0px; animation-delay: 0.8s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
+				<div
+					style="left: 0px; top: 0px; animation-delay: 0.9s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
+			</div>
+		</div>
+	</div>
 
+	<div style="display:hidden" id='modifycontent'>
+
+		<form class="form-horizontal" method="post" action="modifypassword"
+			id="modifyform">
+			<span class="heading">修改密码</span>
+			<div class="form-group">
+				<input type="password" class="form-control" id="oldpassword"
+					name="oldpassword" placeholder="原  密  码"> <i
+					class="fa fa-lock"></i>
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" id="newpassword"
+					name="newpassword" placeholder="新  密  码"> <i
+					class="fa fa-lock"></i>
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" id="repassword"
+					name="repassword" placeholder="确认密码"> <i class="fa fa-lock"></i>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary" type="submit" id="confirmmodify">确认修改</button>
+			</div>
+		</form>
+
+	</div>
 </body>
 <script>
-	$('#content').load("kebiao");
-	$(".treeview-menu").on("click", "li", function() {
-		var $this = $(this);
-		$this.addClass("active").siblings().removeClass("active");
-		var url = $this.data('url');
-		$('#content').load(url);
+	$(function() {
+		$('.loading').shCircleLoader({
+			color : '#3c8dbc',
+			dots : 10
+		});
+
+		$(document).ajaxStart(function() {
+			$('.loading-modal').modal('show');
+		});
+		$(document).ajaxComplete(function(result) {
+			setTimeout(function() {
+				$('.loading-modal').modal('hide');
+			}, 500);
+		});
+
+		$('#content').load("kebiao");
+		$(".treeview-menu").on("click", "li", function() {
+			var $this = $(this);
+			$this.addClass("active").siblings().removeClass("active");
+			var url = $this.data('url');
+			$('#content').load(url);
+		});
+		$('#logout').click(function() {
+			layer.confirm('确定要退出？', {
+				btn : [ '确定', '取消' ]
+			//按钮
+			}, function() {
+				$.post('logout', function(result) {
+					layer.msg(result.message);
+					if (result.code == 1) {
+						gotologin();
+					}
+
+				});
+			}, function() {
+
+			});
+
+		});
+
+		$('#modifypassword').click(function() {
+			layer.open({
+				type : 1,
+				title : '修改密码',
+				scrollbar : false,
+				area : [ '600px', '' ],
+				content : $('#modifycontent')
+			});
+		});
+		$('#confirmmodify').click(
+				function(e) {
+					var $form = $('#modifyform');
+					var validfield = true;
+					$form.find('input').each(
+							function(i, e) {
+								var val = $(e).val().trim();
+								if (!val) {
+									layer.tips($(e).attr('placeholder')
+											+ '不能为空', $(e));
+									validfield = false;
+									return false;
+								}
+							});
+					if (validfield) {
+						$.post($form.attr('action'), $form.serialize(),
+								function(result) {
+
+									if (result.code == 1) {
+										layer.closeAll();
+										layer.msg(result.message);
+									} else if (result.code == 303) {
+										layer.msg(result.message);
+										gotologin();
+									} else {
+										layer.msg(result.message);
+									}
+								});
+					}
+					return false;
+				});
 	});
+	function gotologin() {
+		setTimeout(function() {
+			layer.closeAll();
+			location.href = 'login';
+		}, 500);
+	}
 </script>
 </html>
