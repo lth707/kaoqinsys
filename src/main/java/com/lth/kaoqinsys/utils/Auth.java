@@ -6,8 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.lth.kaoqinsys.pojo.Teacher;
 
 public class Auth {
-	public static Teacher getLoginTeacher(HttpServletRequest request,
-			HttpServletResponse response) {
+	public static Teacher getLoginTeacher(HttpServletRequest request) {
 		Object object = request.getSession().getAttribute("teacher");
 		if (object != null) {
 			Teacher teacher = null;

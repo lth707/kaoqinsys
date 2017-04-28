@@ -25,7 +25,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String get(HttpServletRequest request, HttpServletResponse response,
 			Model model) {
-		Teacher teacher = Auth.getLoginTeacher(request, response);
+		Teacher teacher = Auth.getLoginTeacher(request);
 		if (teacher != null) {
 			try {
 				response.sendRedirect("home");
@@ -41,7 +41,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String post(HttpServletRequest request,
 			HttpServletResponse response, Model model) {
-		Teacher teacher = Auth.getLoginTeacher(request, response);
+		Teacher teacher = Auth.getLoginTeacher(request);
 		if (teacher != null) {
 			try {
 				response.sendRedirect("home");
@@ -101,7 +101,7 @@ public class LoginController {
 	public ActionResult ModifyPassword(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		Teacher teacher = Auth.getLoginTeacher(request, response);
+		Teacher teacher = Auth.getLoginTeacher(request);
 		if (teacher == null) {
 			return new ActionResult(303, "未登录");
 		} else {

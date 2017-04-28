@@ -17,11 +17,12 @@
 <title><%=request.getParameter("title")%></title>
 <link href="css/bootstrap.min.css" rel="stylesheet" />
  <!-- Font Awesome -->
+ <link rel="stylesheet" href="css/adminlte/AdminLTE.min.css"/>
+<link rel="stylesheet" href="css/adminlte/skins/_all-skins.min.css">
 <link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css">
 <link href="css/custom.css" rel="stylesheet" />
 
-<link rel="stylesheet" href="css/adminlte/AdminLTE.min.css"/>
-<link rel="stylesheet" href="css/adminlte/skins/_all-skins.min.css">
+
 
 <link rel="stylesheet" href="css/fullcalendar/fullcalendar.min.css">
 

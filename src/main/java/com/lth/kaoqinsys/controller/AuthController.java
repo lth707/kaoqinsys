@@ -16,14 +16,17 @@ import com.lth.kaoqinsys.utils.Auth;
 public class AuthController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String  index(HttpServletRequest request,HttpServletResponse response,Model model){
-		Teacher teacher=Auth.getLoginTeacher(request, response);
+		Teacher teacher=Auth.getLoginTeacher(request);
 		if(teacher!=null){
 			if(teacher.getIsadmin()!=1){
+				model.addAttribute("message","您没有权限查看此页面");
 				return "nofound";
 			}
 			return "auth";
 		}else{
-			return "login";
+			model.addAttribute("message","清先登录系统");
+			model.addAttribute("jump","login");
+			return "nofound";
 		}
 	}
 }

@@ -48,6 +48,17 @@
 		#{course_id,jdbcType=INTEGER} GROUP BY student_id
 	</select>
 
+	<select id="selectStudentBySomeCondition" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from teacher_course_student
+		where course_id =#{0}
+		and  time_map=#{1}
+		and  week=#{2}
+		and  term=#{3}
+		and  year=#{4}
+		and  classroom=#{5}
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		teacher_course_student

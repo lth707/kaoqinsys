@@ -34,8 +34,10 @@
 							</div>
 							<div class="pull-right">
 								<a class="btn btn-danger btn-flat" id="logout">退出</a>
-							</div></li>
-					</ul></li>
+							</div>
+						</li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 		</nav> </header>
@@ -50,15 +52,15 @@
 						class="fa fa-angle-left pull-right"></i> </span> </a>
 				<ul class="treeview-menu">
 					<li class="active" data-url="kebiao"><a><i
-							class="fa fa-calendar-times-o"></i> 课程表</a>
-					</li>
+							class="fa fa-calendar-times-o"></i> 课程表</a></li>
 					<li data-url="record"><a><i class="fa fa-line-chart"></i>
-							考勤记录</a>
-					</li>
+							考勤记录</a></li>
 					<c:if test="${teacher.isadmin==1}">
-						<li data-url="auth"><a><i class="fa fa-cog"></i> 权限管理</a></li>
+						<li data-url="auth"><a><i class="fa fa-cog"></i> 权限管理</a>
+						</li>
 					</c:if>
-				</ul></li>
+				</ul>
+			</li>
 		</ul>
 		</section> <!-- /.sidebar --> </aside>
 
@@ -140,7 +142,11 @@
 				$('.loading-modal').modal('hide');
 			}, 500);
 		});
-
+		$(document).ajaxError(function(result) {
+			setTimeout(function() {
+				$('.loading-modal').modal('hide');
+			}, 500);
+		});
 		$(".treeview-menu").on("click", "li", function() {
 			var $this = $(this);
 			$this.addClass("active").siblings().removeClass("active");
@@ -152,15 +158,7 @@
 			location.hash = top.Base64.encode(url);
 		});
 		$(window).bind('hashchange', function() {
-			var hash = top.Base64.decode(location.hash);
-			$(".treeview-menu").find('li').each(function(i, e) {
-				if (hash.indexOf($(e).data('url')) == 0) {
-					$(e).addClass("active");
-				} else {
-					$(e).removeClass("active");
-				}
-			});
-			$('#content').load(hash);
+			initPage();
 		});
 		$('#logout').click(function() {
 			layer.confirm('确定要退出？', {
@@ -220,6 +218,12 @@
 					}
 					return false;
 				});
+
+		var curWeekAndTerm = getCurrentTermAndWeek();
+		top.curWeekAndTerm = curWeekAndTerm;
+
+		initPage();
+
 	});
 	function gotologin() {
 		setTimeout(function() {
@@ -227,9 +231,22 @@
 			location.href = 'login';
 		}, 500);
 	}
+	function initPage() {
+		var hash = top.Base64.decode(location.hash);
 
-	var curWeekAndTerm = getCurrentTermAndWeek();
-	top.curWeekAndTerm = curWeekAndTerm;
-	$('#content').load("kebiao?" + $.param(curWeekAndTerm));
+		if (hash) {
+			$('#content').load(hash);
+			$(".treeview-menu").find('li').each(function(i, e) {
+				if (hash.indexOf($(e).data('url')) == 0) {
+					$(e).addClass("active");
+				} else {
+					$(e).removeClass("active");
+				}
+			});
+		}
+
+		else
+			$('#content').load("kebiao?" + $.param(curWeekAndTerm));
+	}
 </script>
 </html>

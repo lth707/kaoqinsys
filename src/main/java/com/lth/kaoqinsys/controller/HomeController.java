@@ -14,12 +14,12 @@ import com.lth.kaoqinsys.pojo.Teacher;
 import com.lth.kaoqinsys.utils.Auth;
 
 @Controller
-@RequestMapping("/home")
+
 public class HomeController {
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/home",method=RequestMethod.GET)
 	public String  index(HttpServletRequest request,HttpServletResponse response,Model model){
-		Teacher teacher=Auth.getLoginTeacher(request, response);
+		Teacher teacher=Auth.getLoginTeacher(request);
 		if(teacher!=null){
 			model.addAttribute("teacher", teacher);
 			model.addAttribute("title", "主页");

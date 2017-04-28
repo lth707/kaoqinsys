@@ -518,7 +518,7 @@
 		var tcs = $(this).data('tcs');
 		var $this = $(this);
 		if (tcs) {
-			var url = 'coursedetail?courseid='+tcs.course.id;
+			var url = 'kebiao/coursedetail?'+$.param(tcs.tcs);
 			$('#content').load(url);
 			location.hash = top.Base64.encode(url);
 		}

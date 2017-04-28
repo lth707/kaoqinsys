@@ -153,3 +153,18 @@ a{
 .fc-row .fc-content-skeleton tbody td:first-child:hover{
 	background:rgba(255,255,255,0);
 }
+
+.disappear{
+	display:none;
+}
+th{
+	background-color:#3c8dbc;
+	color:#fff;
+}
+
+th,td{
+	font-size:14px;
+}
+.pd3{
+	padding: 2px!important;
+}
