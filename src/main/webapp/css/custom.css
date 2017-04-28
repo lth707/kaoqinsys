@@ -139,3 +139,17 @@ a{
 	-webkit-transform:translate(-50%,-50%);
 	z-index:100000;
 }
+.fc-row .fc-content-skeleton tbody td{
+	cursor:pointer;
+	background:rgba(245,245,245,0.3);
+}
+.fc-row .fc-content-skeleton tbody td:first-child{
+	cursor:auto;
+	background:rgba(255,255,255,0);
+}
+.fc-row .fc-content-skeleton tbody td:hover{
+	background:rgba(238,238,238,0.5);
+}
+.fc-row .fc-content-skeleton tbody td:first-child:hover{
+	background:rgba(255,255,255,0);
+}

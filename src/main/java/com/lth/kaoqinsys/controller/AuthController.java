@@ -1,7 +1,5 @@
 package com.lth.kaoqinsys.controller;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,11 +23,6 @@ public class AuthController {
 			}
 			return "auth";
 		}else{
-			try {
-				response.sendRedirect("login");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			return "login";
 		}
 	}

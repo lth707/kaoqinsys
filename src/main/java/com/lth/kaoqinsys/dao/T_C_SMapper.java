@@ -14,6 +14,8 @@ public interface T_C_SMapper {
     T_C_S selectByPrimaryKey(Integer id);
     
     ArrayList<T_C_S> selectKeBiaoByTeacherId(int teacher_id);
+    
+    ArrayList<T_C_S> selectStudentByCourseId(int course_id);
 
     int updateByPrimaryKeySelective(T_C_S record);
 

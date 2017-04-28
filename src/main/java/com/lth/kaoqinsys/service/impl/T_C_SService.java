@@ -20,5 +20,10 @@ public class T_C_SService implements IT_C_SService {
        		
 		return tcsmapper.selectKeBiaoByTeacherId(teacher_id);
 	}
+	@Override
+	public ArrayList<T_C_S> getStudentByCourseId(int course_id) {
+		// TODO Auto-generated method stub
+		return tcsmapper.selectStudentByCourseId(course_id);
+	}
 
 }

@@ -15,7 +15,8 @@
 		<result column="term" property="term" jdbcType="TINYINT" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, classroom, teacher_id, course_id, time_map, student_id, type, state,
+		id, classroom, teacher_id, course_id, time_map, student_id,
+		type, state,
 		week, year,
 		term
 	</sql>
@@ -27,31 +28,47 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 
-	
+
 
 	<select id="selectKeBiaoByTeacherId" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
 		from teacher_course_student
-		where teacher_id = #{teacher_id,jdbcType=INTEGER} GROUP BY time_map
+		where teacher_id =
+		#{teacher_id,jdbcType=INTEGER} GROUP BY time_map
+	</select>
+
+	<select id="selectStudentByCourseId" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from teacher_course_student
+		where course_id =
+		#{course_id,jdbcType=INTEGER} GROUP BY student_id
 	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from teacher_course_student
+		delete from
+		teacher_course_student
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.lth.kaoqinsys.pojo.T_C_S">
-		insert into teacher_course_student (id, classroom, teacher_id,
-		course_id, time_map, student_id,
+		insert into
+		teacher_course_student (id, classroom, teacher_id,
+		course_id, time_map,
+		student_id,
 		type, state, week,
 		year, term)
-		values (#{id,jdbcType=INTEGER}, #{classroom,jdbcType=VARCHAR},
+		values
+		(#{id,jdbcType=INTEGER}, #{classroom,jdbcType=VARCHAR},
 		#{teacherId,jdbcType=INTEGER},
-		#{courseId,jdbcType=INTEGER}, #{timeMap,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER},
+		#{courseId,jdbcType=INTEGER},
+		#{timeMap,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER},
 		#{type,jdbcType=TINYINT}, #{state,jdbcType=INTEGER},
 		#{week,jdbcType=VARCHAR},
-		#{year,jdbcType=INTEGER}, #{term,jdbcType=TINYINT})
+		#{year,jdbcType=INTEGER},
+		#{term,jdbcType=TINYINT})
 	</insert>
 	<insert id="insertSelective" parameterType="com.lth.kaoqinsys.pojo.T_C_S">
 		insert into teacher_course_student
@@ -163,17 +180,22 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.lth.kaoqinsys.pojo.T_C_S">
-		update teacher_course_student
+		update
+		teacher_course_student
 		set classroom = #{classroom,jdbcType=VARCHAR},
 		teacher_id = #{teacherId,jdbcType=INTEGER},
-		course_id = #{courseId,jdbcType=INTEGER},
+		course_id =
+		#{courseId,jdbcType=INTEGER},
 		time_map = #{timeMap,jdbcType=INTEGER},
 		student_id = #{studentId,jdbcType=INTEGER},
-		type = #{type,jdbcType=TINYINT},
+		type =
+		#{type,jdbcType=TINYINT},
 		state = #{state,jdbcType=INTEGER},
-		week = #{week,jdbcType=VARCHAR},
+		week =
+		#{week,jdbcType=VARCHAR},
 		year = #{year,jdbcType=INTEGER},
-		term = #{term,jdbcType=TINYINT}
+		term =
+		#{term,jdbcType=TINYINT}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

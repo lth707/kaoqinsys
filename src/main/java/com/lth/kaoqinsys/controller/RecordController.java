@@ -1,6 +1,5 @@
 package com.lth.kaoqinsys.controller;
 
-import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,11 +21,7 @@ public class RecordController {
 		if(teacher!=null){
 			return "record";
 		}else{
-			try {
-				response.sendRedirect("login");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			
 			return "login";
 		}
 	}

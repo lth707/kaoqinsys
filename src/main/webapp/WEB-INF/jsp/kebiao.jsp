@@ -35,8 +35,11 @@
 						class="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled"
 						disabled="disabled">当前周</button>
 				</div>
+				<div class="fc-right">
+					<h2>${currentYear}&nbsp;&nbsp;第${currentTerm}学期</h2>
+				</div>
 				<div class="fc-center">
-					<h2>${currentdate}</h2>
+					<h2>第${currentWeek}周</h2>
 				</div>
 				<div class="fc-clear"></div>
 			</div>
@@ -501,4 +504,24 @@
 		</div>
 	</div>
 </div>
+<script>
+	$('.fc-row .fc-content-skeleton tbody td').hover(function(e) {
+		var tcs = $(this).data('tcs');
+		var $this = $(this);
+		if (tcs) {
+			openTips($this, tcs);
+		}
+	}, function() {
+		layer.closeAll();
+	});
+	$('.fc-row .fc-content-skeleton tbody td').click(function(e) {
+		var tcs = $(this).data('tcs');
+		var $this = $(this);
+		if (tcs) {
+			var url = 'coursedetail?courseid='+tcs.course.id;
+			$('#content').load(url);
+			location.hash = top.Base64.encode(url);
+		}
+	});
+</script>
 <!-- /.box-body -->

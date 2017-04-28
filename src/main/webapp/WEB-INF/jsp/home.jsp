@@ -126,6 +126,7 @@
 </body>
 <script>
 	$(function() {
+		top.Base64 = new Base64();
 		$('.loading').shCircleLoader({
 			color : '#3c8dbc',
 			dots : 10
@@ -144,7 +145,22 @@
 			var $this = $(this);
 			$this.addClass("active").siblings().removeClass("active");
 			var url = $this.data('url');
+			if (url == 'kebiao') {
+				url += '?' + $.param(top.curWeekAndTerm);
+			}
 			$('#content').load(url);
+			location.hash = top.Base64.encode(url);
+		});
+		$(window).bind('hashchange', function() {
+			var hash = top.Base64.decode(location.hash);
+			$(".treeview-menu").find('li').each(function(i, e) {
+				if (hash.indexOf($(e).data('url')) == 0) {
+					$(e).addClass("active");
+				} else {
+					$(e).removeClass("active");
+				}
+			});
+			$('#content').load(hash);
 		});
 		$('#logout').click(function() {
 			layer.confirm('确定要退出？', {
@@ -211,29 +227,9 @@
 			location.href = 'login';
 		}, 500);
 	}
-	debugger;
-	var nowDate = new Date();
-	var curYear = nowDate.Format('yyyy');
-	var date1 = new Date(curYear + '/3/1');
-	var date2 = new Date(curYear + '/9/1');
-	var term = 1;//学期
-	var week = 1;//周
-	if (Date.parse(nowDate) > Date.parse(date2)) {
-		term = 1;
-	} else if (Date.parse(nowDate) > Date.parse(date1)
-			&& Date.parse(nowDate) < Date.parse(date2)) {
-		term = 2;
-	} else {
-		term = 1;
-	}
-	var td;
-	if (term = 1) {
-		td = TodayInfo(curYear + "/9/1");
-	} else {
-		td = TodayInfo(curYear + "/3/1");
-	}
-    week=td.week;
-	console.log("今天是自2013/12/16日，开学以来的第 " + td.week + " 周，今天星期" + td.day+"第"+term+"学期");
-	$('#content').load("kebiao");
+
+	var curWeekAndTerm = getCurrentTermAndWeek();
+	top.curWeekAndTerm = curWeekAndTerm;
+	$('#content').load("kebiao?" + $.param(curWeekAndTerm));
 </script>
 </html>
