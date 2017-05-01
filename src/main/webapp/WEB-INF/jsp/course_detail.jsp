@@ -9,6 +9,8 @@
 					<th>姓名</th>
 					<th>学号</th>
 					<th>性别</th>
+					<th>年级</th>
+					<th>班级</th>
 					<th>考勤状态</th>
 					<th>操作</th>
 				</tr>
@@ -24,25 +26,26 @@
 						<c:if test="${tcsModel.student.sex==0}">
 							<td>女</td>
 						</c:if>
-						<c:if test="${tcsModel.tcs.state==1}">
+						<td>${tcsModel.student.grade}</td>
+						<td>${tcsModel.student.classnum}</td>
+						<c:if test="${tcsModel.kaoqinReacord.state==1}">
 							<td><span>已到</span> <select class="form-control disappear">
 									<option selected value="1">已到</option>
 									<option value="0">缺勤</option>
-							</select>
-							</td>
+							</select></td>
 						</c:if>
-						<c:if test="${tcsModel.tcs.state==0}">
+						<c:if test="${tcsModel.kaoqinReacord.state==0}">
 							<td><span>缺勤</span> <select class="form-control disappear">
 									<option value="1">已到</option>
 									<option selected value="0">缺勤</option>
-							</select>
-							</td>
+							</select></td>
 						</c:if>
 						<td style="width:7%"><a class="modify"
-							data-tcsid="${tcsModel.tcs.id}">修改</a> <span
+							data-recordid="${tcsModel.kaoqinReacord.id}">修改</a> <span
 							class="modifybtn disappear"> <a class="sure"
-								data-tcsid="${tcsModel.tcs.id}">确定</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-								class="cancel">取消</a> </span></td>
+								data-recordid="${tcsModel.kaoqinReacord.id}">确定</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+								class="cancel">取消</a> </span>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -69,13 +72,13 @@
 						.addClass('disappear');
 			});
 	$('.sure').click(function() {
-		var tcsid = $(this).data('tcsid');
+		var recordid = $(this).data('recordid');
 		var $thisparent = $(this).parent();
 		var $pretd = $thisparent.parent().prev();
 		var $span = $pretd.find('span');
 		var $select = $pretd.find('select');
 		$.post('kebiao/modifystate', {
-			tcsid : tcsid,
+			recordId : recordid,
 			state : $select.val()
 		}, function(result) {
 			if (result.code == 1) {
@@ -83,11 +86,11 @@
 				layer.msg(result.message);
 				$thisparent.addClass('disappear');
 				$thisparent.prev().removeClass('disappear');
-				
+
 				if ($select.val() == 1)
-					$pretd.text('已到');
+					$pretd.find('span').text('已到');
 				else
-					$pretd.text('缺勤');
+					$pretd.find('span').text('缺勤');
 				$pretd.removeClass('pd3');
 				$span.removeClass('disappear');
 				$select.addClass('disappear');

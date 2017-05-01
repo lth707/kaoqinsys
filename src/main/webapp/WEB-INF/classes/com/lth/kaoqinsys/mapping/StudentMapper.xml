@@ -6,9 +6,11 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="num" property="num" jdbcType="VARCHAR" />
+    <result column="classnum" property="classnum" jdbcType="INTEGER" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, sex, num
+    id, name, sex, num, classnum, grade
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,9 +24,9 @@
   </delete>
   <insert id="insert" parameterType="com.lth.kaoqinsys.pojo.Student" >
     insert into student (id, name, sex, 
-      num)
+      num, classnum, grade)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{num,jdbcType=VARCHAR})
+      #{num,jdbcType=VARCHAR}, #{classnum,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lth.kaoqinsys.pojo.Student" >
     insert into student
@@ -41,6 +43,12 @@
       <if test="num != null" >
         num,
       </if>
+      <if test="classnum != null" >
+        classnum,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -54,6 +62,12 @@
       </if>
       <if test="num != null" >
         #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="classnum != null" >
+        #{classnum,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -69,6 +83,12 @@
       <if test="num != null" >
         num = #{num,jdbcType=VARCHAR},
       </if>
+      <if test="classnum != null" >
+        classnum = #{classnum,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +96,9 @@
     update student
     set name = #{name,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
-      num = #{num,jdbcType=VARCHAR}
+      num = #{num,jdbcType=VARCHAR},
+      classnum = #{classnum,jdbcType=INTEGER},
+      grade = #{grade,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -94,6 +94,12 @@ function getCurrentTermAndWeek() {
 	};
 }
 
+function gotologin() {
+	setTimeout(function() {
+				layer.closeAll();
+				location.href = 'login';
+			}, 500);
+}
 function openTips(ele, tcs) {
 	var content = ['<div class="row">', '<div class="col-sm-12">',
 			'<div class="col-sm-5">课程名</div>',
@@ -103,8 +109,8 @@ function openTips(ele, tcs) {
 			'<div class="col-sm-7">' + tcs.teacher.name + '</div>', '</div>',
 			'</div>', '<div class="row">', '<div class="col-sm-12">',
 			'<div class="col-sm-5">班级</div>',
-			'<div class="col-sm-7">' + tcs.tcs.classroom + '</div>', '</div>',
-			'</div>', '<div class="row">', '<div class="col-sm-12">',
+			'<div class="col-sm-7">' + tcs.course.classroom + '</div>',
+			'</div>', '</div>', '<div class="row">', '<div class="col-sm-12">',
 			'<div class="col-sm-5">周数</div>',
 			'<div class="col-sm-7">1-20周</div>', '</div>', '</div>'];
 

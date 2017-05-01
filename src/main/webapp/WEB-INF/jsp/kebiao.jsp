@@ -32,8 +32,7 @@
 						</button>
 					</div>
 					<button type="button"
-						class="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled"
-						disabled="disabled">当前周</button>
+						class="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right currentweek">当前周</button>
 				</div>
 				<div class="fc-right">
 					<h2>${currentYear}&nbsp;&nbsp;第${currentTerm}学期</h2>
@@ -63,8 +62,7 @@
 												</tr>
 											</thead>
 										</table>
-									</div>
-								</td>
+									</div></td>
 							</tr>
 						</thead>
 						<tbody>
@@ -103,7 +101,7 @@
 																	<c:set value="${courseMap.get(index)}" var="course" />
 																	<c:set value="${tcsMap.get(index)}" var="tcs" />
 																	<c:if test="${course!=null}">
-																		<td data-tcs='${tcs}'>${course.name}</td>
+																		<td data-timemap='${index}' data-tcs='${tcs}'>${course.name}</td>
 																	</c:if>
 																	<c:if test="${course==null}">
 																		<td></td>
@@ -142,7 +140,7 @@
 																	<c:set value="${courseMap.get(index)}" var="course" />
 																	<c:set value="${tcsMap.get(index)}" var="tcs" />
 																	<c:if test="${course!=null}">
-																		<td data-tcs='${tcs}'>${course.name}</td>
+																		<td data-timemap='${index}' data-tcs='${tcs}'>${course.name}</td>
 																	</c:if>
 																	<c:if test="${course==null}">
 																		<td></td>
@@ -180,7 +178,7 @@
 																	<c:set value="${courseMap.get(index)}" var="course" />
 																	<c:set value="${tcsMap.get(index)}" var="tcs" />
 																	<c:if test="${course!=null}">
-																		<td data-tcs='${tcs}'>${course.name}</td>
+																		<td data-timemap='${index}' data-tcs='${tcs}'>${course.name}</td>
 																	</c:if>
 																	<c:if test="${course==null}">
 																		<td></td>
@@ -218,7 +216,7 @@
 																	<c:set value="${courseMap.get(index)}" var="course" />
 																	<c:set value="${tcsMap.get(index)}" var="tcs" />
 																	<c:if test="${course!=null}">
-																		<td data-tcs='${tcs}'>${course.name}</td>
+																		<td data-timemap='${index}' data-tcs='${tcs}'>${course.name}</td>
 																	</c:if>
 																	<c:if test="${course==null}">
 																		<td></td>
@@ -275,7 +273,7 @@
 																	<c:set value="${courseMap.get(index)}" var="course" />
 																	<c:set value="${tcsMap.get(index)}" var="tcs" />
 																	<c:if test="${course!=null}">
-																		<td data-tcs='${tcs}'>${course.name}</td>
+																		<td data-timemap='${index}' data-tcs='${tcs}'>${course.name}</td>
 																	</c:if>
 																	<c:if test="${course==null}">
 																		<td></td>
@@ -314,7 +312,7 @@
 																	<c:set value="${courseMap.get(index)}" var="course" />
 																	<c:set value="${tcsMap.get(index)}" var="tcs" />
 																	<c:if test="${course!=null}">
-																		<td data-tcs='${tcs}'>${course.name}</td>
+																		<td data-timemap='${index}' data-tcs='${tcs}'>${course.name}</td>
 																	</c:if>
 																	<c:if test="${course==null}">
 																		<td></td>
@@ -352,7 +350,7 @@
 																	<c:set value="${courseMap.get(index)}" var="course" />
 																	<c:set value="${tcsMap.get(index)}" var="tcs" />
 																	<c:if test="${course!=null}">
-																		<td data-tcs='${tcs}'>${course.name}</td>
+																		<td data-timemap='${index}' data-tcs='${tcs}'>${course.name}</td>
 																	</c:if>
 																	<c:if test="${course==null}">
 																		<td></td>
@@ -390,7 +388,7 @@
 																	<c:set value="${courseMap.get(index)}" var="course" />
 																	<c:set value="${tcsMap.get(index)}" var="tcs" />
 																	<c:if test="${course!=null}">
-																		<td data-tcs='${tcs}'>${course.name}</td>
+																		<td data-timemap='${index}' data-tcs='${tcs}'>${course.name}</td>
 																	</c:if>
 																	<c:if test="${course==null}">
 																		<td></td>
@@ -443,7 +441,7 @@
 																	<c:set value="${courseMap.get(index)}" var="course" />
 																	<c:set value="${tcsMap.get(index)}" var="tcs" />
 																	<c:if test="${course!=null}">
-																		<td data-tcs='${tcs}'>${course.name}</td>
+																		<td data-timemap='${index}' data-tcs='${tcs}'>${course.name}</td>
 																	</c:if>
 																	<c:if test="${course==null}">
 																		<td></td>
@@ -481,7 +479,7 @@
 																	<c:set value="${courseMap.get(index)}" var="course" />
 																	<c:set value="${tcsMap.get(index)}" var="tcs" />
 																	<c:if test="${course!=null}">
-																		<td data-tcs='${tcs}'>${course.name}</td>
+																		<td data-timemap='${index}' data-tcs='${tcs}'>${course.name}</td>
 																	</c:if>
 																	<c:if test="${course==null}">
 																		<td></td>
@@ -494,8 +492,7 @@
 											</div>
 
 										</div>
-									</div>
-								</td>
+									</div></td>
 							</tr>
 						</tbody>
 					</table>
@@ -518,10 +515,52 @@
 		var tcs = $(this).data('tcs');
 		var $this = $(this);
 		if (tcs) {
-			var url = 'kebiao/coursedetail?'+$.param(tcs.tcs);
+			var obj = {
+				courseId : tcs.course.id,
+				timeMap : $this.data('timemap'),
+				week : top.curWeekAndTerm.week,
+				term : top.curWeekAndTerm.term,
+				year : top.curWeekAndTerm.year
+			};
+			var url = 'kebiao/coursedetail?' + $.param(obj);
 			$('#content').load(url);
 			location.hash = top.Base64.encode(url);
 		}
+	});
+	$('.fc-corner-left').click(function() {
+		var curWeekAndTerm = top.curWeekAndTerm;
+		if (curWeekAndTerm.week > 1) {
+			curWeekAndTerm.week--;
+		} else {
+			curWeekAndTerm.week = 20;
+			if (curWeekAndTerm.term == 2) {
+				curWeekAndTerm.term--;
+			} else {
+				curWeekAndTerm.term = 2;
+				curWeekAndTerm.year--;
+			}
+
+		}
+		$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
+	});
+	$('.fc-corner-right').click(function() {
+		var curWeekAndTerm = top.curWeekAndTerm;
+		if (curWeekAndTerm.week < 20) {
+			curWeekAndTerm.week++;
+		} else {
+			curWeekAndTerm.week = 1;
+			if (curWeekAndTerm.term == 1) {
+				curWeekAndTerm.term++;
+			} else {
+				curWeekAndTerm.term = 1;
+				curWeekAndTerm.year = parseInt(curWeekAndTerm.year) + 1;
+			}
+		}
+		$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
+	});
+	$('.currentweek').click(function() {
+		top.curWeekAndTerm = getCurrentTermAndWeek();
+		$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
 	});
 </script>
 <!-- /.box-body -->

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lth.kaoqinsys.dao.CourseWeekMapper" >
+  <resultMap id="BaseResultMap" type="com.lth.kaoqinsys.pojo.CourseWeek" >
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="week" property="week" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List" >
+    course_id,week
+  </sql>
+  
+  <select id="seletCourseWeekByCourseId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_week
+    where course_id = #{course_id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <insert id="insert" parameterType="com.lth.kaoqinsys.pojo.CourseWeek" >
+    insert into course_week (course_id, week)
+    values (#{courseId,jdbcType=INTEGER}, #{week,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lth.kaoqinsys.pojo.CourseWeek" >
+    insert into course_week
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="week != null" >
+        week,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="week != null" >
+        #{week,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

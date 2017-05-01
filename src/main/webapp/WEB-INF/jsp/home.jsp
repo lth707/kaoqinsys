@@ -34,10 +34,8 @@
 							</div>
 							<div class="pull-right">
 								<a class="btn btn-danger btn-flat" id="logout">退出</a>
-							</div>
-						</li>
-					</ul>
-				</li>
+							</div></li>
+					</ul></li>
 			</ul>
 		</div>
 		</nav> </header>
@@ -52,15 +50,15 @@
 						class="fa fa-angle-left pull-right"></i> </span> </a>
 				<ul class="treeview-menu">
 					<li class="active" data-url="kebiao"><a><i
-							class="fa fa-calendar-times-o"></i> 课程表</a></li>
+							class="fa fa-calendar-times-o"></i> 课程表</a>
+					</li>
 					<li data-url="record"><a><i class="fa fa-line-chart"></i>
-							考勤记录</a></li>
+							考勤记录</a>
+					</li>
 					<c:if test="${teacher.isadmin==1}">
-						<li data-url="auth"><a><i class="fa fa-cog"></i> 权限管理</a>
-						</li>
+						<li data-url="auth"><a><i class="fa fa-cog"></i> 权限管理</a></li>
 					</c:if>
-				</ul>
-			</li>
+				</ul></li>
 		</ul>
 		</section> <!-- /.sidebar --> </aside>
 
@@ -73,31 +71,7 @@
 	<div class="modal loading-modal"
 		style="display:none;background:rgba(0,0,0,0.1);z-index:10000000000000"
 		data-backdrop="static">
-		<div class="loading">
-			<div class="shcl"
-				style="position: relative; width: 0px; height: 0px; margin-left: 1px; margin-top: 1px;">
-				<div
-					style="left: 0px; top: 0px; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
-				<div
-					style="left: 0px; top: 0px; animation-delay: 0.1s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
-				<div
-					style="left: 0px; top: 0px; animation-delay: 0.2s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
-				<div
-					style="left: 0px; top: 0px; animation-delay: 0.3s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
-				<div
-					style="left: 0px; top: 0px; animation-delay: 0.4s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
-				<div
-					style="left: 0px; top: 0px; animation-delay: 0.5s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
-				<div
-					style="left: 0px; top: 0px; animation-delay: 0.6s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
-				<div
-					style="left: 0px; top: 0px; animation-delay: 0.7s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
-				<div
-					style="left: 0px; top: 0px; animation-delay: 0.8s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
-				<div
-					style="left: 0px; top: 0px; animation-delay: 0.9s; position: absolute; visibility: hidden; width: 0px; height: 0px; background: rgb(60, 141, 188); animation-name: shcl1_bounce; animation-duration: 1s; animation-iteration-count: infinite; animation-direction: normal;"></div>
-			</div>
-		</div>
+		<div class="loading"></div>
 	</div>
 
 	<div style="display:none" id='modifycontent'>
@@ -124,6 +98,65 @@
 			</div>
 		</form>
 
+	</div>
+	<div style="display:none" id='addteacherdiv'>
+		<form method="post" action="addteacher" id="addteacherform"
+			style="margin-top:15px">
+			<div class="form-group">
+				<label class="col-sm-3">性名</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="name" name="name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3">性别</label>
+				<div class="col-sm-9">
+					<div class="col-sm-6">
+						<label for="sex1">男</label> <input type="radio" class="" id="sex1"
+							name="sex" value="1" checked />
+					</div>
+					<div class="col-sm-6">
+						<label for="sex2">女</label> <input type="radio" class="" id="sex2"
+							name="sex" value="0" />
+					</div>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3">权限控制</label>
+				<div class="col-sm-9">
+					<div class="col-sm-6">
+						<label for="isadmin1">管理员</label> <input type="radio" class=""
+							id="isadmin1" name="isadmin" value="1" checked />
+					</div>
+					<div class="col-sm-6">
+						<label for="isadmin2">普通账号</label> <input type="radio" class=""
+							id="isadmin2" name="isadmin" value="0" />
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3">教工号</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="num" name="num">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3">密码</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="password"
+						name="password" placeholder="默认为123">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-12" style="text-align:center">
+					<button class="btn btn-primary btn-sm" type="submit"
+						id="confirmadd">确认添加</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </body>
 <script>
@@ -225,12 +258,7 @@
 		initPage();
 
 	});
-	function gotologin() {
-		setTimeout(function() {
-			layer.closeAll();
-			location.href = 'login';
-		}, 500);
-	}
+
 	function initPage() {
 		var hash = top.Base64.decode(location.hash);
 
@@ -246,7 +274,7 @@
 		}
 
 		else
-			$('#content').load("kebiao?" + $.param(curWeekAndTerm));
+			$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
 	}
 </script>
 </html>

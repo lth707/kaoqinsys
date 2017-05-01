@@ -1,36 +1,35 @@
 package com.lth.kaoqinsys.model;
 
 import com.lth.kaoqinsys.pojo.Course;
+import com.lth.kaoqinsys.pojo.KaoqinReacord;
 import com.lth.kaoqinsys.pojo.Student;
-import com.lth.kaoqinsys.pojo.T_C_S;
 import com.lth.kaoqinsys.pojo.Teacher;
 
 public class TCSModel {
-	private T_C_S tcs;
 	private Course course;
 	private Teacher teacher;
 	private Student student;
-
+    private KaoqinReacord kaoqinReacord;
 	
-	public TCSModel(T_C_S tcs, Course course, Teacher teacher) {
+	
+	public TCSModel(Course course, Student student, KaoqinReacord kaoqinReacord) {
 		super();
-		this.tcs = tcs;
+		this.course = course;
+		this.student = student;
+		this.kaoqinReacord = kaoqinReacord;
+	}
+	public TCSModel(Course course, Teacher teacher) {
+		super();
 		this.course = course;
 		this.teacher = teacher;
 	}
-	public TCSModel(T_C_S tcs,Student student) {
+	
+	public TCSModel(Course course,KaoqinReacord kaoqinReacord, Student student) {
 		super();
-		this.tcs = tcs;
-		this.student=student;
+		this.course = course;
+		this.student = student;
+		this.kaoqinReacord=kaoqinReacord;
 	}
-	public T_C_S getTcs() {
-		return tcs;
-	}
-
-	public void setTcs(T_C_S tcs) {
-		this.tcs = tcs;
-	}
-
 	public Course getCourse() {
 		return course;
 	}
@@ -51,5 +50,12 @@ public class TCSModel {
 	}
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+	
+	public KaoqinReacord getKaoqinReacord() {
+		return kaoqinReacord;
+	}
+	public void setKaoqinReacord(KaoqinReacord kaoqinReacord) {
+		this.kaoqinReacord = kaoqinReacord;
 	}
 }

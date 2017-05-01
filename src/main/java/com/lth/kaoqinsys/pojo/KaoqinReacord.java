@@ -1,9 +1,7 @@
 package com.lth.kaoqinsys.pojo;
 
-public class T_C_S {
+public class KaoqinReacord {
     private Integer id;
-
-    private String classroom;
 
     private Integer teacherId;
 
@@ -13,30 +11,36 @@ public class T_C_S {
 
     private Integer studentId;
 
-    private Byte type;
-
     private Integer state;
 
-    private String week;
+    private Integer week;
 
     private Integer year;
 
     private Byte term;
 
-    public Integer getId() {
+    public KaoqinReacord(){};
+			
+    public KaoqinReacord(Integer teacherId, Integer courseId,
+			Integer timeMap, Integer studentId, Integer state, Integer week,
+			Integer year, Byte term) {
+		super();
+		this.teacherId = teacherId;
+		this.courseId = courseId;
+		this.timeMap = timeMap;
+		this.studentId = studentId;
+		this.state = state;
+		this.week = week;
+		this.year = year;
+		this.term = term;
+	}
+
+	public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getClassroom() {
-        return classroom;
-    }
-
-    public void setClassroom(String classroom) {
-        this.classroom = classroom == null ? null : classroom.trim();
     }
 
     public Integer getTeacherId() {
@@ -71,14 +75,6 @@ public class T_C_S {
         this.studentId = studentId;
     }
 
-    public Byte getType() {
-        return type;
-    }
-
-    public void setType(Byte type) {
-        this.type = type;
-    }
-
     public Integer getState() {
         return state;
     }
@@ -87,12 +83,12 @@ public class T_C_S {
         this.state = state;
     }
 
-    public String getWeek() {
+    public Integer getWeek() {
         return week;
     }
 
-    public void setWeek(String week) {
-        this.week = week == null ? null : week.trim();
+    public void setWeek(Integer week) {
+        this.week = week;
     }
 
     public Integer getYear() {

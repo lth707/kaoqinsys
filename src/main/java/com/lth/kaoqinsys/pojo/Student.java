@@ -9,6 +9,10 @@ public class Student {
 
     private String num;
 
+   
+
+    private Integer grade;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +43,23 @@ public class Student {
 
     public void setNum(String num) {
         this.num = num == null ? null : num.trim();
+    }
+
+    public Integer getClassnum() {
+		return classnum;
+	}
+
+	public void setClassnum(Integer classnum) {
+		this.classnum = classnum;
+	}
+
+	private Integer classnum;
+
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
     }
 }

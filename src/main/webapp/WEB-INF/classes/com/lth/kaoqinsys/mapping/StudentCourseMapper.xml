@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lth.kaoqinsys.dao.StudentCourseMapper" >
+  <resultMap id="BaseResultMap" type="com.lth.kaoqinsys.pojo.StudentCourse" >
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    student_id,course_id
+  </sql>
+  
+  <select id="seletStudentByCourseId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_course
+    where course_id = #{course_id,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  <insert id="insert" parameterType="com.lth.kaoqinsys.pojo.StudentCourse" >
+    insert into student_course (student_id, course_id)
+    values (#{studentId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lth.kaoqinsys.pojo.StudentCourse" >
+    insert into student_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

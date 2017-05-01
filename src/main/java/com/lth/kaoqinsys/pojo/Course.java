@@ -5,6 +5,8 @@ public class Course {
 
     private String name;
 
+    private String classroom;
+
     public Integer getId() {
         return id;
     }
@@ -19,5 +21,13 @@ public class Course {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(String classroom) {
+        this.classroom = classroom == null ? null : classroom.trim();
     }
 }
