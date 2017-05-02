@@ -16,10 +16,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title><%=request.getParameter("title")%></title>
 <link href="css/bootstrap.min.css" rel="stylesheet" />
- <!-- Font Awesome -->
- <link rel="stylesheet" href="css/adminlte/AdminLTE.min.css"/>
+<link rel="stylesheet" href="css/adminlte/AdminLTE.min.css"/>
 <link rel="stylesheet" href="css/adminlte/skins/_all-skins.min.css">
 <link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
 <link href="css/custom.css" rel="stylesheet" />
 
 
@@ -33,6 +33,8 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/plugins/jquery.shCircleLoader-min.js"></script>
 <script type="text/javascript" src="js/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+
     
 </head>

@@ -6,6 +6,10 @@ public class CourseWeek {
     private Integer courseId;
 
     private Integer week;
+    
+    private Integer year;
+    
+    private Integer term;
 
     public Integer getCourseId() {
         return courseId;
@@ -25,5 +29,21 @@ public class CourseWeek {
 
 	public ArrayList<CourseWeek> seletCourseWeekByCourseId(int course_id) {
 		return this.seletCourseWeekByCourseId(course_id);
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Integer getTerm() {
+		return term;
+	}
+
+	public void setTerm(Integer term) {
+		this.term = term;
 	}
 }

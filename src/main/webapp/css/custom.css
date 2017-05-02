@@ -167,3 +167,7 @@ th,td{
 .pd3{
 	padding: 2px!important;
 }
+.datetimepicker thead tr:first-child th, .datetimepicker tfoot th {
+    background: white;
+    color: black;
+}

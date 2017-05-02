@@ -32,13 +32,33 @@
 						</button>
 					</div>
 					<button type="button"
-						class="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right currentweek">当前周</button>
+						class="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right currentweek">返回当前周</button>
 				</div>
 				<div class="fc-right">
-					<h2>${currentYear}&nbsp;&nbsp;第${currentTerm}学期</h2>
+					<h2>
+						<input value='${currentYear}' readonly class="datepicker"
+							style="width:80px;text-align:center" />年&nbsp;&nbsp;&nbsp;&nbsp;第<select
+							id="termselected">
+							<c:if test='${currentTerm==1}'>
+								<option value='1' selected>1</option>
+							</c:if>
+							<c:if test='${currentTerm!=1}'>
+								<option value='1'>1</option>
+							</c:if>
+							<c:if test='${currentTerm==2}'>
+								<option value='2' selected>2</option>
+							</c:if>
+							<c:if test='${currentTerm!=2}'>
+								<option value='2'>2</option>
+							</c:if>
+						</select>学期
+					</h2>
 				</div>
 				<div class="fc-center">
-					<h2>第${currentWeek}周</h2>
+					<h2>
+						第<input type="text" value='${currentWeek}' style="width:50px;text-align:center"
+							id="curweek" />周
+					</h2>
 				</div>
 				<div class="fc-clear"></div>
 			</div>
@@ -62,7 +82,8 @@
 												</tr>
 											</thead>
 										</table>
-									</div></td>
+									</div>
+								</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -492,7 +513,8 @@
 											</div>
 
 										</div>
-									</div></td>
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -552,15 +574,56 @@
 			if (curWeekAndTerm.term == 1) {
 				curWeekAndTerm.term++;
 			} else {
+
 				curWeekAndTerm.term = 1;
 				curWeekAndTerm.year = parseInt(curWeekAndTerm.year) + 1;
 			}
 		}
+		checkTermAndYear();
 		$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
 	});
 	$('.currentweek').click(function() {
 		top.curWeekAndTerm = getCurrentTermAndWeek();
 		$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
+		location.hash = top.Base64.encode("kebiao?"
+									+ $.param(top.curWeekAndTerm));
+	});
+	$('#termselected').change(
+			function() {
+				top.curWeekAndTerm.term = $(this).val();
+				checkTermAndYear();
+				$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
+				location.hash = top.Base64.encode("kebiao?"
+						+ $.param(top.curWeekAndTerm));
+			});
+	$('#curweek')
+			.keyup(
+					function(e) {
+						if (e.keyCode == 13) {
+							top.curWeekAndTerm.week = $(this).val();
+							checkTermAndYear();
+							$('#content').load(
+									"kebiao?" + $.param(top.curWeekAndTerm));
+							location.hash = top.Base64.encode("kebiao?"
+									+ $.param(top.curWeekAndTerm));
+						}
+					});
+
+	var datepicker = $('.datepicker').datetimepicker({
+		format : 'yyyy',
+		autoclose : true,
+		endDate : new Date(getCurrentTermAndWeek().year + '/12/30'),
+		startView : 4,
+		maxView : 4,
+		minView : 4,
+		fontAwesome : true,
+	}).on('changeYear', function(ev) {
+		var newDate = new Date(ev.date);
+		datepicker.val(newDate.getFullYear());
+		top.curWeekAndTerm.year = datepicker.val();
+		checkTermAndYear();
+		location.hash = top.Base64.encode("kebiao?"
+						+ $.param(top.curWeekAndTerm));
 	});
 </script>
 <!-- /.box-body -->

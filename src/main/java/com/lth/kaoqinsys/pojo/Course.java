@@ -6,6 +6,8 @@ public class Course {
     private String name;
 
     private String classroom;
+    
+    private  int maxweek;
 
     public Integer getId() {
         return id;
@@ -30,4 +32,12 @@ public class Course {
     public void setClassroom(String classroom) {
         this.classroom = classroom == null ? null : classroom.trim();
     }
+
+	public int getMaxweek() {
+		return maxweek;
+	}
+
+	public void setMaxweek(int maxweek) {
+		this.maxweek = maxweek;
+	}
 }

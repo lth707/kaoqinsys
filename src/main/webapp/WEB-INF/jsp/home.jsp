@@ -184,7 +184,7 @@
 			var $this = $(this);
 			$this.addClass("active").siblings().removeClass("active");
 			var url = $this.data('url');
-			if (url == 'kebiao') {
+			if (url == 'kebiao'||url == 'record') {
 				url += '?' + $.param(top.curWeekAndTerm);
 			}
 			$('#content').load(url);

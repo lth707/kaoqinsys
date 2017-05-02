@@ -28,6 +28,7 @@ import com.lth.kaoqinsys.service.ITeacherService;
 import com.lth.kaoqinsys.utils.ActionResult;
 import com.lth.kaoqinsys.utils.Auth;
 import com.lth.kaoqinsys.utils.JsonUtils;
+import com.lth.kaoqinsys.utils.Tool;
 
 @Controller
 public class KebiaoController {
@@ -43,19 +44,40 @@ public class KebiaoController {
 			HttpServletResponse response, Model model) {
 		Teacher teacher = Auth.getLoginTeacher(request);
 		if (teacher != null) {
-			ArrayList<TeacherCourse> tcList = iTeacherService
-					.getTeacherCoursesByTeacherId(teacher.getId());
 			int currentWeek;
+			int currentTerm;
+			int currentYear;
 			try {
 				currentWeek = Integer.parseInt(request.getParameter("week"));
+				currentTerm = Integer.parseInt(request.getParameter("term"));
+				currentYear = Integer.parseInt(request.getParameter("year"));
 			} catch (Exception e) {
-				model.addAttribute("message", "week参数错误");
+				model.addAttribute("message", "参数错误");
+				return "nofound";
+			}
+			if ((currentTerm != 1 && currentTerm != 2)|| currentWeek > 20) {
+				model.addAttribute("message", "参数错误");
+				return "nofound";
+			}
+			
+			HashMap<String, Object> currentTermAndWeek = Tool
+					.getCurrentTermAndWeek();
+			int currentTermInt = Integer.parseInt(currentTermAndWeek
+					.get("term").toString());
+			int currentYearInt = Integer.parseInt(currentTermAndWeek
+					.get("year").toString());
+			if(currentYear==currentYearInt&&currentTerm>currentTermInt){
+				model.addAttribute("message", "term参数错误");
+				return "nofound";
+			}
+			if(currentYear>currentYearInt){
+				model.addAttribute("message", "year参数错误");
 				return "nofound";
 			}
 
-			String currentTermString = request.getParameter("term");
-			String currentYearString = request.getParameter("year");
-
+			ArrayList<TeacherCourse> tcList = iTeacherService
+					.getTeacherCoursesByTeacherId(teacher.getId());
+			
 			model.addAttribute("teacher", teacher);
 			HashMap<Integer, String> tcsMap = new HashMap<Integer, String>();
 			HashMap<Integer, Course> courseMap = new HashMap<Integer, Course>();
@@ -68,13 +90,18 @@ public class KebiaoController {
 				ArrayList<CourseWeek> courseWeeks = iCourseService
 						.seletCourseWeekByCourseId(course.getId());
 				boolean weekhascourse = false;
+				int maxweek = 0;
 				for (CourseWeek cw : courseWeeks) {
-					if (cw.getWeek() == currentWeek) {
+					if (maxweek < cw.getWeek()) {
+						maxweek = cw.getWeek();
+					}
+					if (maxweek >= currentWeek&&currentTerm==cw.getTerm()&&cw.getYear()==currentYear) {
 						weekhascourse = true;
 					}
 				}
 				if (weekhascourse) {
 					for (CourseTimeMap ctm : timeMaps) {
+						course.setMaxweek(maxweek);
 						tcsMap.put(ctm.getTimemap(), JsonUtils
 								.toJsonFromList(new TCSModel(course, teacher)));
 						courseMap.put(ctm.getTimemap(), course);
@@ -95,9 +122,9 @@ public class KebiaoController {
 			model.addAttribute("tcsMap", tcsMap);
 			model.addAttribute("courseMap", courseMap);
 			model.addAttribute("fiftyArrayList", fiftyArrayList);
-			model.addAttribute("currentTerm", currentTermString);
+			model.addAttribute("currentTerm", currentTerm);
 			model.addAttribute("currentWeek", currentWeek);
-			model.addAttribute("currentYear", currentYearString);
+			model.addAttribute("currentYear", currentYear);
 			return "kebiao";
 		} else {
 			model.addAttribute("message", "清先登录系统");
@@ -124,35 +151,66 @@ public class KebiaoController {
 			model.addAttribute("message", "参数错误");
 			return "nofound";
 		}
+		if ((term != 1 && term != 2)|| week > 20) {
+			model.addAttribute("message", "参数错误");
+			return "nofound";
+		}
+		
+		HashMap<String, Object> currentTermAndWeek = Tool
+				.getCurrentTermAndWeek();
+		int currentTermInt = Integer.parseInt(currentTermAndWeek
+				.get("term").toString());
+		int currentYearInt = Integer.parseInt(currentTermAndWeek
+				.get("year").toString());
+		if(year==currentYearInt&&term>currentTermInt){
+			model.addAttribute("message", "term参数错误");
+			return "nofound";
+		}
+		if(year>currentYearInt){
+			model.addAttribute("message", "year参数错误");
+			return "nofound";
+		}
+		
 		Teacher teacher = Auth.getLoginTeacher(request);
 		if (teacher == null) {
 			model.addAttribute("jump", "login");
 			model.addAttribute("message", "清先登录系统");
 			return "nofound";
 		}
-		ArrayList<StudentCourse> scs=this.iStudentService.seletStudentByCourseId(course_id);
+		ArrayList<StudentCourse> scs = this.iStudentService
+				.seletStudentByCourseId(course_id);
 		ArrayList<TCSModel> tcsModels = new ArrayList<TCSModel>();
-		for(StudentCourse sc:scs){
+		for (StudentCourse sc : scs) {
 			Course course = iCourseService.selectCourseById(sc.getCourseId());
 			ArrayList<CourseWeek> courseWeeks = iCourseService
 					.seletCourseWeekByCourseId(course.getId());
 			boolean weekhascourse = false;
+			int maxweek = 0;
 			for (CourseWeek cw : courseWeeks) {
-				if (cw.getWeek() == week) {
+				if (maxweek < cw.getWeek()) {
+					maxweek = cw.getWeek();
+				}
+				if (maxweek >= week) {
 					weekhascourse = true;
 				}
 			}
-			if(weekhascourse){
-				Student student=iStudentService.selectStudentByPrimaryKey(sc.getStudentId());
-				ArrayList<KaoqinReacord> kaoqinReacords=iCourseService.selectKaoqinRecordBySomeCondition(teacher.getId(), course.getId(), time_map, student.getId(), week, year, term);
-				if(kaoqinReacords.isEmpty()){
-					KaoqinReacord kaoqinReacord=new KaoqinReacord(teacher.getId(),course.getId(),time_map,student.getId(),1,week,year,(byte) term);
+			if (weekhascourse) {
+				Student student = iStudentService.selectStudentByPrimaryKey(sc
+						.getStudentId());
+				ArrayList<KaoqinReacord> kaoqinReacords = iCourseService
+						.selectKaoqinRecordBySomeCondition(teacher.getId(),
+								course.getId(), time_map, student.getId(),
+								week, year, term);
+				if (kaoqinReacords.isEmpty()) {
+					KaoqinReacord kaoqinReacord = new KaoqinReacord(
+							teacher.getId(), course.getId(), time_map,
+							student.getId(), 1, week, year, (byte) term);
 					iCourseService.insertKaoqinRecord(kaoqinReacord);
 					kaoqinReacord.setId(iCourseService.selectMaxId());
 					kaoqinReacords.add(kaoqinReacord);
 				}
-				for(KaoqinReacord kaoqinReacord: kaoqinReacords){
-					tcsModels.add(new TCSModel(course,kaoqinReacord,student));
+				for (KaoqinReacord kaoqinReacord : kaoqinReacords) {
+					tcsModels.add(new TCSModel(course, kaoqinReacord, student));
 				}
 			}
 		}
@@ -176,7 +234,8 @@ public class KebiaoController {
 			return new ActionResult(0, "参数错误");
 		}
 
-		KaoqinReacord kqr = this.iCourseService.selectKaoqinReacordByPrimaryKey(record_id);
+		KaoqinReacord kqr = this.iCourseService
+				.selectKaoqinReacordByPrimaryKey(record_id);
 		if (kqr == null) {
 			return new ActionResult(0, "找不到该记录");
 		}

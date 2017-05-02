@@ -26,12 +26,12 @@ public class CourseService implements ICourseService{
 		return courseMapper.selectByPrimaryKey(id);
 	}
 	@Override
-	public ArrayList<CourseTimeMap> seletTimeMapByCourseId(int id) {
-		return courseTimeMapMapper.seletTimeMapByCourseId(id);
+	public ArrayList<CourseTimeMap> seletTimeMapByCourseId(int course_id) {
+		return courseTimeMapMapper.seletTimeMapByCourseId(course_id);
 	}
 	@Override
-	public ArrayList<CourseWeek> seletCourseWeekByCourseId(int id) {
-		return courseWeekMapper.seletCourseWeekByCourseId(id);
+	public ArrayList<CourseWeek> seletCourseWeekByCourseId(int course_id) {
+		return courseWeekMapper.seletCourseWeekByCourseId(course_id);
 	}
 	@Override
 	public ArrayList<KaoqinReacord> selectKaoqinRecordBySomeCondition(
@@ -56,4 +56,19 @@ public class CourseService implements ICourseService{
 	public int selectMaxId() {
 		return kaoqinReacordMapper.selectMaxId();
 	}
+	@Override
+	public ArrayList<KaoqinReacord> selectKaoqinRecordByStudentId(int student_id) {
+		return kaoqinReacordMapper.selectKaoqinRecordByStudentId(student_id);
+	}
+	@Override
+	public ArrayList<Course> selectAllCourse() {
+		return courseMapper.selectAllCourse();
+	}
+	@Override
+	public ArrayList<CourseWeek> seletCourseWeekBySomeCondition(int course_id,
+			int year, int term) {
+		return courseWeekMapper.seletCourseWeekBySomeCondition(course_id,year,term);
+	}
+	
+	
 }

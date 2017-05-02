@@ -9,5 +9,5 @@ public interface CourseTimeMapMapper {
 
     int insertSelective(CourseTimeMap record);
 
-	ArrayList<CourseTimeMap> seletTimeMapByCourseId(int id);
+	ArrayList<CourseTimeMap> seletTimeMapByCourseId(int course_id);
 }

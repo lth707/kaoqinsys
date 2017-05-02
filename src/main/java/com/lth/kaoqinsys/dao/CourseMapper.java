@@ -1,5 +1,7 @@
 package com.lth.kaoqinsys.dao;
 
+import java.util.ArrayList;
+
 import com.lth.kaoqinsys.pojo.Course;
 
 public interface CourseMapper {
@@ -14,4 +16,6 @@ public interface CourseMapper {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
+
+	ArrayList<Course> selectAllCourse();
 }

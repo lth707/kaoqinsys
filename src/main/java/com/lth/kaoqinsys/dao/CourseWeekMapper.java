@@ -9,5 +9,8 @@ public interface CourseWeekMapper {
 
     int insertSelective(CourseWeek record);
 
-	ArrayList<CourseWeek> seletCourseWeekByCourseId(int id);
+	ArrayList<CourseWeek> seletCourseWeekByCourseId(int course_id);
+
+	ArrayList<CourseWeek> seletCourseWeekBySomeCondition(int course_id,
+			int year, int term);
 }

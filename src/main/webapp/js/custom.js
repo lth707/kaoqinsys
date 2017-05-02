@@ -63,6 +63,21 @@ Date.prototype.Format = function(fmt) { // author: meizz
 	return fmt;
 };
 
+function checkTermAndYear() {
+	var t = getCurrentTermAndWeek();
+	if (curWeekAndTerm.term > t.term && curWeekAndTerm.year == t.year) {
+		 layer.msg("学期不能超过当前时间");
+		 top.curWeekAndTerm=t;
+		 return false;
+	}
+	if(curWeekAndTerm.year > t.year){
+		 layer.msg("学年不能超过当前时间");
+		 top.curWeekAndTerm=t;
+		 return false;
+	}
+	return true;
+}
+
 function getCurrentTermAndWeek() {
 
 	var nowDate = new Date();
@@ -112,7 +127,8 @@ function openTips(ele, tcs) {
 			'<div class="col-sm-7">' + tcs.course.classroom + '</div>',
 			'</div>', '</div>', '<div class="row">', '<div class="col-sm-12">',
 			'<div class="col-sm-5">周数</div>',
-			'<div class="col-sm-7">1-20周</div>', '</div>', '</div>'];
+			'<div class="col-sm-7">1-' + tcs.course.maxweek + '周</div>',
+			'</div>', '</div>'];
 
 	layer.tips(content.join(''), ele, {
 				time : 0,

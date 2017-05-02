@@ -15,6 +15,12 @@
     from course
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectAllCourse" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from course
     where id = #{id,jdbcType=INTEGER}

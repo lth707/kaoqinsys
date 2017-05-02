@@ -20,4 +20,8 @@ public interface KaoqinReacordMapper {
     int updateByPrimaryKey(KaoqinReacord record);
     
     int selectMaxId();
+
+	ArrayList<KaoqinReacord> selectKaoqinRecordByStudentId(int student_id);
+
+	Integer getStudentCourseAbsentTimes(int student_id,int course_id, int year,int term);
 }
