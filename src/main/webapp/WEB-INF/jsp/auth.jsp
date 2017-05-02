@@ -6,7 +6,7 @@
 	overflow: hidden;
 }
 </style>
-<div class="box">
+<div class="box box-primary">
 	<div class="box-header">
 		<button class="btn btn-primary pull-right" id="add_teacher">添加老师</button>
 	</div>

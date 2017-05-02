@@ -26,7 +26,7 @@
 		<div class="fc-clear"></div>
 	</div>
 </div>
-<div class="box">
+<div class="box box-primary">
 	<div class="box-body">
 		<table class="table table-bordered table-hover text-center">
 			<thead>

@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<div class="box">
+<div class="box box-primary">
 	<div class="box-body">
 		<table class="table table-bordered table-hover text-center">
 			<thead>
