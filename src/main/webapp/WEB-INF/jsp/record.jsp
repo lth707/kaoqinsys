@@ -65,9 +65,8 @@
 			function() {
 				top.curWeekAndTerm.term = $(this).val();
 				checkTermAndYear();
-				$('#content').load("record?" + $.param(top.curWeekAndTerm));
-				location.hash = top.Base64.encode("record?"
-						+ $.param(top.curWeekAndTerm));
+				var url = 'record?' + $.param(top.curWeekAndTerm);
+		        location.hash = top.Base64.encode(url);
 			});
 
 	var datepicker = $('.datepicker').datetimepicker({
@@ -85,7 +84,7 @@
 				datepicker.val(newDate.getFullYear());
 				top.curWeekAndTerm.year = datepicker.val();
 				checkTermAndYear();
-				location.hash = top.Base64.encode("record?"
-						+ $.param(top.curWeekAndTerm));
+				var url = 'record?' + $.param(top.curWeekAndTerm);
+		        location.hash = top.Base64.encode(url);
 			});
 </script>

@@ -56,8 +56,8 @@
 				</div>
 				<div class="fc-center">
 					<h2>
-						第<input type="text" value='${currentWeek}' style="width:50px;text-align:center"
-							id="curweek" />周
+						第<input type="text" value='${currentWeek}'
+							style="width:50px;text-align:center" id="curweek" />周
 					</h2>
 				</div>
 				<div class="fc-clear"></div>
@@ -82,8 +82,7 @@
 												</tr>
 											</thead>
 										</table>
-									</div>
-								</td>
+									</div></td>
 							</tr>
 						</thead>
 						<tbody>
@@ -513,8 +512,7 @@
 											</div>
 
 										</div>
-									</div>
-								</td>
+									</div></td>
 							</tr>
 						</tbody>
 					</table>
@@ -544,8 +542,8 @@
 				term : top.curWeekAndTerm.term,
 				year : top.curWeekAndTerm.year
 			};
+			layer.closeAll();
 			var url = 'kebiao/coursedetail?' + $.param(obj);
-			$('#content').load(url);
 			location.hash = top.Base64.encode(url);
 		}
 	});
@@ -563,7 +561,8 @@
 			}
 
 		}
-		$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
+		var url = 'kebiao?' + $.param(top.curWeekAndTerm);
+		location.hash = top.Base64.encode(url);
 	});
 	$('.fc-corner-right').click(function() {
 		var curWeekAndTerm = top.curWeekAndTerm;
@@ -580,34 +579,28 @@
 			}
 		}
 		checkTermAndYear();
-		$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
+		var url = 'kebiao?' + $.param(top.curWeekAndTerm);
+		location.hash = top.Base64.encode(url);
 	});
 	$('.currentweek').click(function() {
 		top.curWeekAndTerm = getCurrentTermAndWeek();
-		$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
-		location.hash = top.Base64.encode("kebiao?"
-									+ $.param(top.curWeekAndTerm));
+		var url = 'kebiao?' + $.param(top.curWeekAndTerm);
+		location.hash = top.Base64.encode(url);
 	});
-	$('#termselected').change(
-			function() {
-				top.curWeekAndTerm.term = $(this).val();
-				checkTermAndYear();
-				$('#content').load("kebiao?" + $.param(top.curWeekAndTerm));
-				location.hash = top.Base64.encode("kebiao?"
-						+ $.param(top.curWeekAndTerm));
-			});
-	$('#curweek')
-			.keyup(
-					function(e) {
-						if (e.keyCode == 13) {
-							top.curWeekAndTerm.week = $(this).val();
-							checkTermAndYear();
-							$('#content').load(
-									"kebiao?" + $.param(top.curWeekAndTerm));
-							location.hash = top.Base64.encode("kebiao?"
-									+ $.param(top.curWeekAndTerm));
-						}
-					});
+	$('#termselected').change(function() {
+		top.curWeekAndTerm.term = $(this).val();
+		checkTermAndYear();
+		var url = 'kebiao?' + $.param(top.curWeekAndTerm);
+		location.hash = top.Base64.encode(url);
+	});
+	$('#curweek').keyup(function(e) {
+		if (e.keyCode == 13) {
+			top.curWeekAndTerm.week = $(this).val();
+			checkTermAndYear();
+			var url = 'kebiao?' + $.param(top.curWeekAndTerm);
+			location.hash = top.Base64.encode(url);
+		}
+	});
 
 	var datepicker = $('.datepicker').datetimepicker({
 		format : 'yyyy',
@@ -622,8 +615,8 @@
 		datepicker.val(newDate.getFullYear());
 		top.curWeekAndTerm.year = datepicker.val();
 		checkTermAndYear();
-		location.hash = top.Base64.encode("kebiao?"
-						+ $.param(top.curWeekAndTerm));
+		var url = 'kebiao?' + $.param(top.curWeekAndTerm);
+		location.hash = top.Base64.encode(url);
 	});
 </script>
 <!-- /.box-body -->
