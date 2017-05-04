@@ -14,6 +14,9 @@
 .fc-row .fc-content-skeleton {
 	padding-bottom: 0px;
 }
+.fc-day-header{
+  color:black
+}
 </style>
 <div class="box box-primary">
 	<div class="box-body no-padding">
