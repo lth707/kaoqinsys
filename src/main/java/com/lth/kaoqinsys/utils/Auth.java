@@ -1,7 +1,6 @@
 package com.lth.kaoqinsys.utils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import com.lth.kaoqinsys.pojo.Teacher;
 

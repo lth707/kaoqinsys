@@ -51,12 +51,9 @@ public class Tool {
 		Date date1 = new Date(curYear + "/3/1");
 		Date date2 = new Date((curYear - 1) + "/9/1");
 		int term = 1;// 学期
-		if (Date.parse(nowDate.toString()) > Date.parse(date2.toString())
-				&& Date.parse(nowDate.toString()) < Date
-						.parse(date1.toString())) {
+		if(nowDate.getSeconds()>date2.getSeconds()&&nowDate.getSeconds()<date1.getSeconds()){
 			term = 1;
-		} else if (Date.parse(nowDate.toString()) > Date
-				.parse(date1.toString())) {
+		}else if (nowDate.getSeconds() > date1.getSeconds()) {
 			term = 2;
 		} else {
 			term = 1;
